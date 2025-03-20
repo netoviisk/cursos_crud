@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cursos</title>
+</head>
+<body>
+    <h1>Lista de Cursos</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome do Curso</th>
+                <th>Instrutor</th>
+                <th>Carga Horária</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.nome }}</td>
+                <td>{{ curso.instrutor }}</td>
+                <td>{{ curso.carga_horaria }}</td>
+                <td>{{ curso.descricao }}</td>
+                <td>
+                    <a href="{% url 'editar_curso' curso.id %}">Editar</a> |
+                    <a href="{% url 'excluir_curso' curso.id %}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'cadastrar_curso' %}">Cadastrar Novo Curso</a>
+</body>
+</html>

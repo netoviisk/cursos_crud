@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas - Sistema de Cursos</title>
+</head>
+<body>
+    <h1>Consultas no Sistema de Cursos</h1>
+
+    <!-- Formulário de Consulta de Cursos -->
+    <h2>Consultar Cursos</h2>
+    <form method="get">
+        {% csrf_token %}
+        {{ curso_form.as_p }}
+        <button type="submit">Pesquisar Cursos</button>
+    </form>
+
+    {% if cursos %}
+        <h3>Resultados da Pesquisa de Cursos</h3>
+        <table border="1">
+            <tr>
+                <th>Nome do Curso</th>
+                <th>Instrutor</th>
+                <th>Carga Horária</th>
+                <th>Descrição</th>
+            </tr>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.nome }}</td>
+                <td>{{ curso.instrutor }}</td>
+                <td>{{ curso.carga_horaria }}</td>
+                <td>{{ curso.descricao }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <!-- Formulário de Consulta de Alunos -->
+    <h2>Consultar Alunos</h2>
+    <form method="get">
+        {% csrf_token %}
+        {{ aluno_form.as_p }}
+        <button type="submit">Pesquisar Alunos</button>
+    </form>
+
+    {% if alunos %}
+        <h3>Resultados da Pesquisa de Alunos</h3>
+        <table border="1">
+            <tr>
+                <th>Nome do Aluno</th>
+                <th>Email</th>
+                <th>Telefone</th>
+            </tr>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.email }}</td>
+                <td>{{ aluno.telefone }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <!-- Formulário de Consulta de Inscrições -->
+    <h2>Consultar Inscrições</h2>
+    <form method="get">
+        {% csrf_token %}
+        {{ inscricao_form.as_p }}
+        <button type="submit">Pesquisar Inscrições</button>
+    </form>
+
+    {% if inscricoes %}
+        <h3>Resultados da Pesquisa de Inscrições</h3>
+        <table border="1">
+            <tr>
+                <th>Aluno</th>
+                <th>Curso</th>
+                <th>Data de Inscrição</th>
+            </tr>
+            {% for inscricao in inscricoes %}
+            <tr>
+                <td>{{ inscricao.aluno.nome }}</td>
+                <td>{{ inscricao.curso.nome }}</td>
+                <td>{{ inscricao.data_inscricao }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <a href="{% url 'cadastrar_curso' %}">Cadastrar Novo Curso</a>
+    <a href="{% url 'cadastrar_aluno' %}">Cadastrar Novo Aluno</a>
+</body>
+</html>

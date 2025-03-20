@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Inscrições</title>
+</head>
+<body>
+    <h1>Lista de Inscrições</h1>
+    <table border="1">
+        <tr>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Data da Inscrição</th>
+        </tr>
+        {% for inscricao in inscricoes %}
+        <tr>
+            <td>{{ inscricao.aluno.nome }}</td>
+            <td>{{ inscricao.curso.nome }}</td>
+            <td>{{ inscricao.data_inscricao }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'inscrever_aluno' %}">Inscrever Novo Aluno</a>
+</body>
+</html>
