@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+<style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        h1 {
+            color: #007bff;
+            margin-top: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Tabela */
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        td a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        /* Link de voltar */
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media (max-width: 800px) {
+            table {
+                width: 100%;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+            td, th {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome do Aluno</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.email }}</td>
+                <td>{{ aluno.telefone }}</td>
+                <td>
+                    <a href="{% url 'editar_aluno' aluno.id %}">Editar</a> |
+                    <a href="{% url 'excluir_aluno' aluno.id %}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'cadastrar_aluno' %}">Cadastrar Novo Aluno</a>
+</body>
+</html>
